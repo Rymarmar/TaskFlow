@@ -1,24 +1,39 @@
-name: Node CI
+name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
-
+    
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run test
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      
+      # -- Backend Steps --
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          npm install
+      - name: Test Backend
+        run: |
+          cd backend
+          npm test  # or npm run test if you have a test script
+
+      # -- Frontend Steps --
+      - name: Install Frontend Dependencies
+        run: |
+          cd frontend
+          npm install
+      - name: Build Frontend
+        run: |
+          cd frontend
+          npm run build
+      - name: Test Frontend
+        run: |
+          cd frontend
+          npm test  # or npm run test if you have a test script
