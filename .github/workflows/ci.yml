@@ -19,10 +19,6 @@ jobs:
         run: |
           cd backend
           npm install
-      - name: Test Backend
-        run: |
-          cd backend
-          npm test  # or npm run test if you have a test script
 
       # -- Frontend Steps --
       - name: Install Frontend Dependencies

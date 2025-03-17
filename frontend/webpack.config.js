@@ -1,40 +1,35 @@
 // frontend/webpack.config.js
-
 const path = require('path');
 
 module.exports = {
-  mode: 'development', // or 'production'
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/', // For client-side routing if needed
+    publicPath: '/',
   },
+  mode: 'development',
   devServer: {
     static: path.join(__dirname, 'public'),
-    port: 3000,
-    historyApiFallback: true, // For client-side routing
+    port: 3003,
+    historyApiFallback: true,
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,      // Transpile .js and .jsx files
-        exclude: /node_modules/, 
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
         },
       },
       {
-        test: /\.css$/,          // Load CSS files
+        test: /\.css$/,
         use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(png|jpg|gif)$/,  // Load images
-        type: 'asset/resource',
-      },
+      }
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'], // So you can import .js/.jsx files without specifying extensions
+    extensions: ['.js', '.jsx'],
   },
 };
