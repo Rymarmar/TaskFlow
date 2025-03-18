@@ -1,3 +1,4 @@
+# .github/workflows/ci.yml
 name: CI
 
 on:
@@ -19,6 +20,10 @@ jobs:
         run: |
           cd backend
           npm install
+      - name: Test Backend
+        run: |
+          cd backend
+          npm test
 
       # -- Frontend Steps --
       - name: Install Frontend Dependencies
@@ -32,4 +37,4 @@ jobs:
       - name: Test Frontend
         run: |
           cd frontend
-          npm test  # or npm run test if you have a test script
+          npm test

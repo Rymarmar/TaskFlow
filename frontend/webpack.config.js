@@ -11,7 +11,7 @@ module.exports = {
   mode: 'development',
   devServer: {
     static: path.join(__dirname, 'public'),
-    port: 3003,
+    port: 3001,
     historyApiFallback: true,
   },
   module: {
